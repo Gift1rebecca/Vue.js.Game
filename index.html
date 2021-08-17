@@ -33,18 +33,21 @@
                 <button id="start-game" @click='startGame'>START NEW GAME</button>
             </div>
         </section>
-        <section class="row-controls" v-else="">
+        <section class="row-controls" v-else>
             <div class="small-12 columns">
-                <button id="attack">SPECIAL ATTACK</button>
-                <button id="heal">HEAL</button>
-                <button id="give-up">GIVE UP</button>
+                <button id="attack" @click="attack">ATTACK</button>
+                <button id="specialAttack" @click="special-attack">SPECIAL ATTACK</button>
+                <button id="heal" @click="heal">HEAL</button>
+                <button id="give-up" @click="giveUp">GIVE UP</button>
             </div>
         </section>
-        <section>
+        <section class="row log" v-if="turns, length > 0">
             <div class="small-12 columns">
                 <ul>
-                    <li>
-
+                    <li 
+                    v-for="turn in turns"
+                    :class="{'player-turn': turn.isPlayer, 'monster-turn': !turn.isPlayer}">
+                        {{ turn,text }}
                     </li>
                 </ul>
             </div>
